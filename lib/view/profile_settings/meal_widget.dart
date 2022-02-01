@@ -23,9 +23,6 @@ class _MealWidgetState extends State<MealWidget> {
   String _selectedItem = '30';
 
   _MealWidgetState({required this.meal}) {
-    _selectedItem = minuteItems[0].toString();
-    picked = meal.time.toTimeOfDay();
-    _selectedItem = meal.notifyAfter.toString();
     _nameController.addListener(() {
       meal.name = _nameController.text;
       // Database.saveProfile();
@@ -72,8 +69,9 @@ class _MealWidgetState extends State<MealWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _nameController.text = widget.meal.name;
-    if (widget.meal.name == "NotAssignedYet") {
+    meal = widget.meal;
+    _nameController.text = meal.name;
+    if (meal.name == "NotAssignedYet") {
       _nameController.text = '';
     }
     return Card(
@@ -90,7 +88,7 @@ class _MealWidgetState extends State<MealWidget> {
                   size: 18,
                 ),
                 onPressed: () => setState(() {
-                      widget.removeMeal(widget.meal);
+                      widget.removeMeal(meal);
                       // Database.saveProfile();
                     }))),
         Padding(
@@ -109,7 +107,7 @@ class _MealWidgetState extends State<MealWidget> {
                             if (!hasFocus) {
                               AttendanceManager.getAttendanceRecord(
                                       DateTime.now())
-                                  .updateMealName(widget.meal);
+                                  .updateMealName(meal);
                             }
                           },
                           child: TextFormField(
@@ -160,7 +158,7 @@ class _MealWidgetState extends State<MealWidget> {
                   ),
                   Expanded(
                     child: DropdownButton<String>(
-                      value: _selectedItem,
+                      value: meal.notifyAfter.toString(),
                       icon: const Icon(Icons.arrow_drop_down),
                       iconSize: 24,
                       elevation: 16,

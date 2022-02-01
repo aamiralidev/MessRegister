@@ -20,13 +20,15 @@ class MessProfileAdapter extends TypeAdapter<MessProfile> {
       name: fields[0] as String,
       billSettings: fields[2] as BillSettings?,
       meals: (fields[3] as List?)?.cast<Meal>(),
-    )..days = fields[1] as WeekDays;
+    )
+      ..days = fields[1] as WeekDays
+      ..currentID = fields[4] as int;
   }
 
   @override
   void write(BinaryWriter writer, MessProfile obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -34,7 +36,9 @@ class MessProfileAdapter extends TypeAdapter<MessProfile> {
       ..writeByte(2)
       ..write(obj.billSettings)
       ..writeByte(3)
-      ..write(obj.meals);
+      ..write(obj.meals)
+      ..writeByte(4)
+      ..write(obj.currentID);
   }
 
   @override

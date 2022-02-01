@@ -18,23 +18,31 @@ class MessProfile extends HiveObject {
   BillSettings billSettings = BillSettings(notifyAt: DateTime(2021));
   @HiveField(3)
   List<Meal> meals = [];
+  @HiveField(4)
+  int currentID = 0;
   MessProfile(
-      {required this.name, BillSettings? billSettings, List<Meal>? meals}) {
+      {required this.name,
+      BillSettings? billSettings,
+      List<Meal>? meals,
+      int? id}) {
+    if (id != null) {
+      currentID = id;
+    }
     if (meals != null) {
       this.meals = meals;
     } else {
       // addMeal(Meal(
-      //     id: 0,
+      //     id: getDefaultID(),
       //     name: "BreakFast",
       //     time: Time(hour: 9, minute: 0),
       //     notifyAfter: 30));
       addMeal(Meal(
-          id: 1,
+          id: getDefaultID(),
           name: "Lunch",
           time: Time(hour: 12, minute: 0),
           notifyAfter: 60));
       addMeal(Meal(
-          id: 2,
+          id: getDefaultID(),
           name: "Dinner",
           time: Time(hour: 18, minute: 00),
           notifyAfter: 60));
@@ -66,14 +74,8 @@ class MessProfile extends HiveObject {
   }
 
   int getDefaultID() {
-    int id = 0;
-    for (var meal in meals) {
-      if (meal.id != id) {
-        break;
-      }
-      id++;
-    }
-    return id;
+    currentID++;
+    return currentID - 1;
   }
 
   Dish? getDish(int mealId, int weekDay) {
@@ -88,5 +90,6 @@ class MessProfile extends HiveObject {
         break;
       }
     }
+    return dish;
   }
 }
