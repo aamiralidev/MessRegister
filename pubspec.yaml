@@ -35,8 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   splash_screen_view: ^3.0.0
-  json_annotation: ^4.4.0
-  path_provider: ^2.0.8
+  path_provider: ^2.0.4
   hive: ^2.0.5
   hive_flutter: ^1.1.0
   awesome_notifications: ^0.0.6+10
@@ -55,10 +54,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  build_runner: ^2.1.7
-  json_serializable: ^6.0.0
+  build_runner: ^2.1.2
   hive_generator: ^1.1.1
-  intl: ^0.17.0
 
 flutter_icons:
   android: "launcher_icon"
