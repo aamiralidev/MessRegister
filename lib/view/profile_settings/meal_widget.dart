@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mess_record_app/model/attendance/attendance_manager.dart';
+import 'package:mess_record_app/model/database.dart';
 
 import 'package:mess_record_app/model/profile/core/meal.dart';
 import 'package:mess_record_app/model/profile/core/time.dart';
@@ -18,8 +19,8 @@ class _MealWidgetState extends State<MealWidget> {
   TimeOfDay? picked = TimeOfDay.now();
   Meal meal;
 
-  List<int> minuteItems = [10, 20, 30, 40, 50, 60];
-  String _selectedItem = '10';
+  List<int> minuteItems = [20, 30, 45, 60, 75, 90];
+  String _selectedItem = '30';
 
   _MealWidgetState({required this.meal}) {
     _selectedItem = minuteItems[0].toString();
@@ -41,8 +42,10 @@ class _MealWidgetState extends State<MealWidget> {
       setState(() {
         meal.time = Time.fromTimeOfDay(picked!);
         // Database.saveProfile();
-        // Database.getDefaultProfile().rescheduleNotification(meal);
+        Database.getDefaultProfile().rescheduleNotification(meal);
       });
+    } else {
+      print("time picked is null");
     }
   }
 
@@ -166,8 +169,8 @@ class _MealWidgetState extends State<MealWidget> {
                           _selectedItem = data ?? '10';
                           meal.notifyAfter = int.parse(_selectedItem);
                           // Database.saveProfile();
-                          // Database.getDefaultProfile()
-                          //     .rescheduleNotification(meal);
+                          Database.getDefaultProfile()
+                              .rescheduleNotification(meal);
                         });
                       },
                       items:

@@ -23,21 +23,21 @@ class MessProfile extends HiveObject {
     if (meals != null) {
       this.meals = meals;
     } else {
-      addMeal(Meal(
-          id: 0,
-          name: "BreakFast",
-          time: Time(hour: 9, minute: 0),
-          notifyAfter: 30));
+      // addMeal(Meal(
+      //     id: 0,
+      //     name: "BreakFast",
+      //     time: Time(hour: 9, minute: 0),
+      //     notifyAfter: 30));
       addMeal(Meal(
           id: 1,
           name: "Lunch",
           time: Time(hour: 12, minute: 0),
-          notifyAfter: 30));
+          notifyAfter: 60));
       addMeal(Meal(
           id: 2,
           name: "Dinner",
           time: Time(hour: 18, minute: 00),
-          notifyAfter: 30));
+          notifyAfter: 60));
     }
     if (billSettings != null) {
       this.billSettings = billSettings;

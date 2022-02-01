@@ -28,37 +28,42 @@ class _DailyAttendanceWidgetState extends State<DailyAttendanceWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5.0,
-      child: SizedBox(
-        height: addIfNotPresent().length * 30 + 50,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                      DateFormat('LLLL d').format(widget.dailyAttendance.date)),
-                  Text(DateFormat('EEEE').format(widget.dailyAttendance.date)),
-                  // Text(widget.attendance.records.length.toString()),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: SizedBox(
-                height: addIfNotPresent().length * 30,
-                child: Column(
-                  children: addIfNotPresent()
-                      .map((e) => EditAttendanceWidget(
-                          attendance: e, updateBill: widget.updateBill))
-                      .toList(),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+      child: Card(
+        elevation: 20.0,
+        child: SizedBox(
+          height: addIfNotPresent().length * 30 + 50,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(DateFormat('LLLL d')
+                        .format(widget.dailyAttendance.date)),
+                    Text(
+                        DateFormat('EEEE').format(widget.dailyAttendance.date)),
+                    // Text(widget.attendance.records.length.toString()),
+                  ],
                 ),
               ),
-            )
-          ]),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: SizedBox(
+                  height: addIfNotPresent().length * 30,
+                  child: Column(
+                    children: addIfNotPresent()
+                        .map((e) => EditAttendanceWidget(
+                            attendance: e, updateBill: widget.updateBill))
+                        .toList(),
+                  ),
+                ),
+              )
+            ]),
+          ),
         ),
       ),
     );

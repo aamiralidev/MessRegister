@@ -1,6 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mess_record_app/app_life_cycle_manager.dart';
 import 'package:mess_record_app/view/app_settings/app_theme.dart';
@@ -12,22 +11,22 @@ import 'model/database.dart';
 import 'view/bottom_navigator.dart';
 
 Future<void> main() async {
-  await Hive.initFlutter();
-  await Database.init();
-  AttendanceManager.init();
-  AwesomeNotifications().initialize(
+  await AwesomeNotifications().initialize(
     'resource://drawable/logo',
     [
       NotificationChannel(
         channelKey: 'basic_channel',
         channelName: 'Basic Notifications',
         defaultColor: Colors.teal,
-        importance: NotificationImportance.High,
+        importance: NotificationImportance.Default,
         channelShowBadge: true,
-        locked: true,
+        // locked: true,
       ),
     ],
   );
+  await Hive.initFlutter();
+  await Database.init();
+  AttendanceManager.init();
 
   runApp(const MyApp());
 }

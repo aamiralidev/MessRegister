@@ -10,7 +10,7 @@ Future<void> createNotification() async {
     ),
     actionButtons: [
       NotificationActionButton(
-        key: 'Mark Attendance',
+        key: 'Mark_Attendance',
         label: 'Mark Attendance',
       ),
     ],
@@ -30,8 +30,8 @@ Future<void> scheduleNotification(NotificationWeekAndTime notificationSchedule,
     ),
     actionButtons: [
       NotificationActionButton(
-        key: 'MARK_DONE',
-        label: 'Mark Attandance',
+        key: 'Yes',
+        label: 'Yes',
       ),
     ],
     schedule: NotificationCalendar(

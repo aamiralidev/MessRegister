@@ -147,31 +147,56 @@ class _SettingsPageState extends State<SettingsPage> {
           title: Text(Constants.appName),
         ),
         body: Stepper(
-          controlsBuilder: (BuildContext context,
-              {void Function()? onStepCancel,
-              void Function()? onStepContinue}) {
+          controlsBuilder: (BuildContext context, ControlsDetails details) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: FloatingActionButton(
-                    onPressed: onStepCancel,
+                    onPressed: details.onStepCancel,
                     child: const Icon(Icons.arrow_upward),
-                    heroTag: "previous",
+                    // heroTag: "previous" + details.currentStep.toString(),
+                    heroTag: null,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: FloatingActionButton(
-                    onPressed: onStepContinue,
+                    onPressed: details.onStepContinue,
                     child: const Icon(Icons.arrow_downward),
-                    heroTag: "next",
+                    // heroTag: "next" + details.currentStep.toString(),
+                    heroTag: null,
                   ),
                 ),
               ],
             );
           },
+          // controlsBuilder: (BuildContext context,
+          //     {void Function()? onStepCancel,
+          //     void Function()? onStepContinue}) {
+          //   return Row(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: <Widget>[
+          //       Padding(
+          //         padding: const EdgeInsets.all(10.0),
+          //         child: FloatingActionButton(
+          //           onPressed: onStepCancel,
+          //           child: const Icon(Icons.arrow_upward),
+          //           heroTag: "previous",
+          //         ),
+          //       ),
+          //       Padding(
+          //         padding: const EdgeInsets.all(10.0),
+          //         child: FloatingActionButton(
+          //           onPressed: onStepContinue,
+          //           child: const Icon(Icons.arrow_downward),
+          //           heroTag: "next",
+          //         ),
+          //       ),
+          //     ],
+          //   );
+          // },
           steps: stepList(),
           currentStep: _activeStepIndex,
           onStepContinue: () {
