@@ -36,7 +36,7 @@ To get started with MessRegister, follow these steps:
 1.  Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/MessRegister.git
+git clone https://github.com/aamirali-dev/MessRegister.git
 ``` 
 
 2.  Open the project in Android Studio or Visual Studio Code.
